@@ -26,13 +26,13 @@ module.exports = function(customScope) {
 
   // monkey patch a close method
   emitter.close = function() {
+    var index = scope.indexOf(emitter);
+
     // remove all listeners
     emitter.removeAllListeners();
-
-    // remove from the scope
-    scope = scope.filter(function(m) {
-      return m !== emitter;
-    });
+    if (index >= 0) {
+      scope.splice(index, 1);
+    }
   };
 
   // add the emitter to the scope
