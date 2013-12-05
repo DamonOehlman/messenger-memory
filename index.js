@@ -10,16 +10,23 @@ var defaultScope = [];
   Simple in-memory messenger
 
 **/
-module.exports = function(customScope) {
+module.exports = function(opts) {
   // create a new event emitter
+  var customScope = (opts || {}).scope;
   var emitter = new EventEmitter();
   var scope = Array.isArray(customScope) ? customScope : defaultScope;
+
+  function send(target, msg) {
+    setTimeout(function() {
+      target.emit('data', msg);
+    }, (opts || {}).delay || 0);
+  }
 
   // monkey patch a send method into the emitter
   emitter.send = emitter.write = function(msg) {
     for (var ii = scope.length; ii--; ) {
       if (scope[ii] !== emitter) {
-        scope[ii].emit('data', msg);
+        send(scope[ii], msg);
       }
     }
   };
