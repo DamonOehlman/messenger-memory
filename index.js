@@ -16,7 +16,7 @@ module.exports = function(customScope) {
   var scope = Array.isArray(customScope) ? customScope : defaultScope;
 
   // monkey patch a send method into the emitter
-  emitter.send = function(msg) {
+  emitter.send = emitter.write = function(msg) {
     for (var ii = scope.length; ii--; ) {
       if (scope[ii] !== emitter) {
         scope[ii].emit('data', msg);
