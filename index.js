@@ -42,6 +42,9 @@ module.exports = function(opts) {
     }
   };
 
+  // set the connected property to true
+  emitter.connected = true;
+
   // add the emitter to the scope
   scope.push(emitter);
 
