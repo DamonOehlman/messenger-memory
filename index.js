@@ -14,6 +14,7 @@ module.exports = function(opts) {
   // create a new event emitter
   var customScope = (opts || {}).scope;
   var emitter = new EventEmitter();
+  var mock = (opts || {}).mock;
   var scope = Array.isArray(customScope) ? customScope : defaultScope;
 
   function send(target, msg) {
@@ -25,7 +26,7 @@ module.exports = function(opts) {
   // monkey patch a send method into the emitter
   emitter.send = emitter.write = function(msg) {
     for (var ii = scope.length; ii--; ) {
-      if (scope[ii] !== emitter) {
+      if (mock || scope[ii] !== emitter) {
         send(scope[ii], msg);
       }
     }
