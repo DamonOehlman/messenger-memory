@@ -16,11 +16,12 @@ module.exports = function(opts) {
   var emitter = new EventEmitter();
   var mock = (opts || {}).mock;
   var scope = Array.isArray(customScope) ? customScope : defaultScope;
+  var delay = (opts || {}).delay || 0;
 
   function send(target, msg) {
     setTimeout(function() {
       target.emit('data', msg);
-    }, (opts || {}).delay || 0);
+    }, typeof delay == 'function' ? delay() : delay);
   }
 
   // monkey patch a send method into the emitter
