@@ -1,19 +1,24 @@
 var messenger = require('..');
+var scope = [];
 
 function createMessenger() {
-  return messenger();
+  return messenger({ scope: scope });
 }
 
 function createDelayed() {
-  return messenger({ delay: 200 });
+  return messenger({ delay: 200, scope: scope });
 }
 
 function createRandomDelay() {
-  return messenger({ delay: function() {
+  return messenger({ scope: scope, delay: function() {
     return Math.random() * 500;
   }});
 }
 
 require('messenger-tests')(createMessenger);
-require('messenger-tests')(createDelayed);
-require('messenger-tests')(createRandomDelay);
+
+// reset and run the delay tests
+scope = []; require('messenger-tests')(createDelayed);
+
+// reset and run the random delay tests
+scope = []; require('messenger-tests')(createRandomDelay);
