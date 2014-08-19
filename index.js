@@ -19,6 +19,15 @@ module.exports = function(opts) {
   var delay = (opts || {}).delay || 0;
 
   function send(target, msg) {
+    if (! emitter.connected) {
+     return;
+    }
+
+    // check if the target is connected (yes it's a bit rudimentary)
+    if (typeof target.connected != 'undefined' && (! target.connected)) {
+      return;
+    }
+
     setTimeout(function() {
       target.emit('data', msg);
     }, typeof delay == 'function' ? delay() : delay);
@@ -36,6 +45,9 @@ module.exports = function(opts) {
   // monkey patch a close method
   emitter.close = function() {
     var index = scope.indexOf(emitter);
+
+    // flag as not connected
+    emitter.connected = false;
 
     // remove all listeners
     emitter.removeAllListeners();
