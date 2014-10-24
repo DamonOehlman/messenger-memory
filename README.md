@@ -1,8 +1,7 @@
 # messenger-memory
 
-An in-memory messaging helper.
-
-Follows the [messenger-archetype](https://github.com/DamonOehlman/messenger-archetype)
+An in-memory messager, following the
+[messenger-archetype](https://github.com/DamonOehlman/messenger-archetype).
 
 [![NPM](https://nodei.co/npm/messenger-memory.png)](https://nodei.co/npm/messenger-memory/)
 

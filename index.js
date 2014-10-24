@@ -4,9 +4,8 @@ var pushable = require('pull-pushable');
 /**
   # messenger-memory
 
-  An in-memory messaging helper.
-
-  Follows the [messenger-archetype](https://github.com/DamonOehlman/messenger-archetype)
+  An in-memory messager, following the
+  [messenger-archetype](https://github.com/DamonOehlman/messenger-archetype).
 
 **/
 module.exports = function(opts) {
