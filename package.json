@@ -1,10 +1,10 @@
 {
   "name": "messenger-memory",
   "version": "1.2.0",
-  "description": "Simple in-memory messaging",
+  "description": "Simple in-memory messaging following the messenger-archetype",
   "main": "index.js",
   "scripts": {
-    "test": "node test/all.js",
+    "test": "node test.js && testling",
     "gendocs": "gendocs > README.md"
   },
   "repository": {
@@ -25,5 +25,12 @@
     "files": "test/all.js"
   },
   "devDependencies": {
+    "pull-stream": "^2.26.0",
+    "tape": "^3.0.1",
+    "testling": "^1.7.1"
+  },
+  "dependencies": {
+    "pull-core": "^1.0.0",
+    "pull-pushable": "^1.1.4"
   }
 }
