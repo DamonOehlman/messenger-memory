@@ -22,7 +22,7 @@
     "url": "https://github.com/DamonOehlman/messenger-memory/issues"
   },
   "testling": {
-    "files": "test/all.js"
+    "files": "test.js"
   },
   "devDependencies": {
     "pull-stream": "^2.26.0",
